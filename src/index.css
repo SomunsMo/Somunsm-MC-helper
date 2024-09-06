@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /*为了体验，屏蔽文本选择*/
+    user-select: none;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+button {
+    padding: 5px 10px;
+    margin: 2px;
+
+    color: white;
+    background-color: dodgerblue;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #50a3ff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 10px 0 5px 0;
+}
+
+p {
+    margin: 5px 0;
+}
+
+a {
+    color: darkorange;
+}
+
+input[type="text"] {
+    height: 26px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
+    color: grey;
+}
+
+input[type="text"]:hover {
+    color: black;
+}
+
+
+select {
+    min-width: 60px;
+    min-height: 24px;
+
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
+}
+
+*:focus {
+    /*outline: none; !* 移除默认的焦点轮廓 *!*/
+    /*box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25) inset;*/
+    /*outline: 5px solid red;*/
+    /*outline-offset: -5px;*/
+}
+
+::selection {
+    color: white;
+    background-color: orange;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: darkorange;
+    border-radius: 10px; /* 滑块边角圆滑度 */
+    border: 2px solid transparent; /* 滑块边框，设置为透明 */
+    background-clip: content-box;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+}
+
+/* 当鼠标悬停在滚动条滑块上时 */
+::-webkit-scrollbar-thumb:hover {
+    background-color: orange;
+}

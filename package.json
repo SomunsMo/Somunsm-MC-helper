@@ -1,0 +1,88 @@
+{
+  "name": "electron-smc-helper",
+  "author": "Somunsm",
+  "description": "Somunsm MC Helper",
+  "version": "0.1.0",
+  "private": true,
+  "main": "electron/main.js",
+  "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.24.7",
+    "@craco/craco": "^7.1.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "better-sqlite3": "^11.2.1",
+    "mobx": "^6.13.1",
+    "mobx-react-lite": "^4.0.7",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^6.26.1",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+    "react-window": "^1.8.10",
+    "styled-components": "^6.1.12",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "set  && craco start",
+    "electron": "wait-on http://localhost:4725 && electron .",
+    "one-tap-electron": "concurrently \"npm run start\" \"npm run electron\"",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^32.0.1",
+    "electron-builder": "^24.13.3",
+    "node-gyp-build": "4.8.0",
+    "wait-on": "^8.0.0"
+  },
+  "build": {
+    "productName": "Somunsm MC Helper",
+    "appId": "somunsm.electron.helper.mc.app",
+    "directories": {
+      "output": "dist"
+    },
+    "extraFiles": [
+      "./build"
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./favicon.ico",
+      "uninstallerIcon": "./favicon.ico",
+      "installerHeaderIcon": "./favicon.ico",
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": false,
+      "shortcutName": "SomunsmMCT"
+    },
+    "win": {
+      "icon": "./favicon.ico",
+      "target": "portable"
+    },
+    "extends": null
+  }
+}
