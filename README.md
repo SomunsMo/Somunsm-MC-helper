@@ -1,18 +1,18 @@
 # Somunsm MC Helper
 
-用于【我的世界（Minecraft）】的一款工具
+游戏：我的世界(Minecraft) 的一款工具
 
-[创建人B站](https://space.bilibili.com/66932246).
+[创建人B站](https://space.bilibili.com/66932246)
 
 ## 适用版本
 
 Java版
 
-## 功能列表
+## 功能
 
 <ol>
-    <li>查看游戏资源文件</li>
-    <li>提取游戏资源文件</li>
+    <li>预览大部分游戏资源文件</li>
+    <li>导出游戏资源文件</li>
 </ol>
 
 ## 技术栈
