@@ -62,8 +62,12 @@ const ImageViewer = () => {
             updateImgZoom();
         }
 
+        // 计算图片大小，如果图片超过查看区域高度，则缩小图片
+        const fittingZoom = getFittingZoom();
+        console.log(fittingZoom);
+
         // 重置缩放
-        setImgZoom(1)
+        setImgZoom(fittingZoom)
         updateImgZoom();
 
         // 重置图片位置
@@ -97,6 +101,42 @@ const ImageViewer = () => {
 
         imgRef.current.style.transform = 'scale(' + zoomMagnification + ')';
     }
+
+    // 计算合适的缩放比
+    const getFittingZoom = () => {
+        // 宽高的相差值
+        let differenceValue = {x: 0, y: 0};
+
+        // img父元素宽高
+        const viewerWidth = viewerRootRef.current.clientWidth;
+        const viewerHeight = viewerRootRef.current.clientHeight;
+        // img宽高
+        const imgWidth = imgRef.current.clientWidth;
+        const imgHeight = imgRef.current.clientHeight;
+
+        // 计算差值
+        differenceValue.x = imgWidth - viewerWidth;
+        differenceValue.y = imgHeight - viewerHeight;
+
+        console.log(
+            viewerWidth,
+            viewerHeight,
+            imgWidth,
+            imgHeight,
+            differenceValue
+        )
+
+        // 得出相差最大的方向
+        let finalZoom;
+        if (differenceValue.x > differenceValue.y) {
+            finalZoom = viewerWidth / imgWidth;
+        } else {
+            finalZoom = viewerHeight / imgHeight;
+        }
+
+        // 保留2未小数
+        return Math.round(finalZoom * 100) / 100;
+    };
 
     // 更新图片移动位置
     const updateImgPosition = (x, y) => {
