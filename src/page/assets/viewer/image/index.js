@@ -102,7 +102,11 @@ const ImageViewer = () => {
         imgRef.current.style.transform = 'scale(' + zoomMagnification + ')';
     }
 
-    // 计算合适的缩放比
+    /**
+     * 计算合适的缩放比
+     *
+     * 原理：设图片宽-显示区域宽=x , 图片高-显示区域高=y 取差值最大的算出缩放倍率，这样就不会超出显示范围
+     */
     const getFittingZoom = () => {
         // 宽高的相差值
         let differenceValue = {x: 0, y: 0};
@@ -117,14 +121,6 @@ const ImageViewer = () => {
         // 计算差值
         differenceValue.x = imgWidth - viewerWidth;
         differenceValue.y = imgHeight - viewerHeight;
-
-        console.log(
-            viewerWidth,
-            viewerHeight,
-            imgWidth,
-            imgHeight,
-            differenceValue
-        )
 
         // 得出相差最大的方向
         let finalZoom;
