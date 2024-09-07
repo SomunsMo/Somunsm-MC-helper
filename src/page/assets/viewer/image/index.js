@@ -66,7 +66,6 @@ const ImageViewer = () => {
 
         // 计算图片大小，如果图片超过查看区域高度，则缩小图片
         const fittingZoom = getFittingZoom();
-        console.log(fittingZoom);
 
         // 重置缩放
         setImgZoom(fittingZoom)
@@ -157,15 +156,6 @@ const ImageViewer = () => {
         // 计算中心位置
         const imgLeft = (viewerWidth - imgWidth) / 2;
         const imgTop = (viewerHeight - imgHeight) / 2;
-
-        console.log(
-            viewerWidth,
-            viewerHeight,
-            imgWidth,
-            imgHeight,
-            imgLeft,
-            imgTop
-        )
 
         // 重置到中心位置
         updateImgPosition(imgLeft, imgTop);
