@@ -11,9 +11,6 @@ export const AssetsStyle = styled.div`
     max-width: 300px;
     padding-right: 15px;
     margin-right: 15px;
-    //background-color: green;
-
-    box-sizing: border-box;
 
     flex-direction: column;
 
@@ -34,21 +31,16 @@ export const AssetsStyle = styled.div`
       flex-grow: 1;
       list-style-type: none;
 
-      overflow-y: auto;
-      overflow-x: hidden;
-
       li {
-        //display: flex;
-        height: 36px;
-        max-width: 100%;
         padding: 0 5px;
         margin: 0;
 
+        box-sizing: border-box;
         line-height: 36px;
         border-radius: 3px;
-        //white-space: nowrap;
-        //overflow: hidden;
-        //text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         cursor: pointer;
       }
@@ -56,7 +48,7 @@ export const AssetsStyle = styled.div`
       li:hover {
         background-color: whitesmoke;
       }
-      
+
     }
 
     .refreshAssetList {
