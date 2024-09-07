@@ -7,8 +7,10 @@ const UNIT_ZOOM = 0.5;
 
 // 最小缩放倍率
 const ZOOM_MIN = 0.3;
-// 最大缩放倍率
-const ZOOM_MAX = 10000;
+// 最大缩放倍率(非百分比，1=100%)
+const ZOOM_MAX = 100;
+// 最大的合适缩放倍率
+const ZOOM_FITTING_MAX = 10;
 
 
 const ImageViewer = () => {
@@ -130,8 +132,11 @@ const ImageViewer = () => {
             finalZoom = viewerHeight / imgHeight;
         }
 
-        // 保留2未小数
-        return Math.round(finalZoom * 100) / 100;
+
+        // 保留2未小数(四舍五入)
+        const zoomRound = Math.round(finalZoom * 100) / 100;
+        // 判断是否超过最大合适缩放倍率，超过则返回最大合适倍率，否则返回计算的值
+        return ZOOM_FITTING_MAX < zoomRound ? ZOOM_FITTING_MAX : zoomRound;
     };
 
     // 更新图片移动位置
