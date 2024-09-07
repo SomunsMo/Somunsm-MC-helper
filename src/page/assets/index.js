@@ -30,6 +30,8 @@ const Assets = () => {
     const [assets, setAssets] = useState({})
     // 资源名称列表 - 用于展示
     const [filteredAssetList, setFilteredAssetList] = useState([]);
+    // 资产列表选中资产的索引
+    const [selectedIndex, setSelectedIndex] = useState(null);
 
     // 当前预览的资源信息
     const [assetInfo, setAssetInfo] = useState(DEFAULT_ASSET_INFO)
@@ -75,7 +77,9 @@ const Assets = () => {
     }
 
     // 查看资源
-    const viewAsset = async (e) => {
+    const viewAsset = async (e, index) => {
+        setSelectedIndex(index);
+
         // 资源原始名称
         const assetName = e.target.innerText;
         // 资源存储时的Hash文件名
@@ -128,8 +132,23 @@ const Assets = () => {
         window.ElectronAPI.exportAsset(assetInfo.assetName);
     }
 
+    // 获取资源列表选中项的样式
+    const getCheckedStyle = (style, index) => {
+        // 最新样式
+        let latestStyle = {...style};
+
+        if (index === selectedIndex) {
+            latestStyle["color"] = 'white';
+            latestStyle["backgroundColor"] = 'darkorange';
+        }
+
+        return latestStyle;
+    }
+
+    // 虚拟列表的项
     const Row = ({index, style}) => (
-        <li tabIndex={0} onClick={viewAsset} key={index} style={style}>{filteredAssetList[index]}</li>
+        <li tabIndex={0} onClick={(e) => viewAsset(e, index)} key={index}
+            style={getCheckedStyle(style, index)}>{filteredAssetList[index]}</li>
     );
 
     return (
@@ -140,7 +159,7 @@ const Assets = () => {
 
                 <List
                     className={"ulList"}
-                    height={500}
+                    height={9999}
                     itemCount={filteredAssetList.length}
                     itemSize={40}>
                     {Row}
