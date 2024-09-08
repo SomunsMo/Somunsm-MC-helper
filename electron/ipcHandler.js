@@ -157,19 +157,23 @@ const ipcHandler = (window, db) => {
 
         const fileStat = await fsPromises.stat(filePath);
 
-        fileData = await fsPromises.readFile(filePath, "utf-8");
+        fileData = await fsPromises.readFile(filePath);
         const hash = crypto.createHash("sha1");
 
         hash.update(fileData);
 
-        return {
+        const result = {
             fileName: fileHash,
             fileHash: hash.digest("hex"),
             fileSize: fileStat.size,
             fileCreationTime: fileStat.ctime,
             path: filePath,
-            data: fileData
+            data: fileData.toString("utf-8")
         };
+
+        console.log(result)
+
+        return result;
     });
 
     // 导出资源文件
