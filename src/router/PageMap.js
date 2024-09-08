@@ -28,6 +28,6 @@ export const PAGE_MAP = {
     settings: {path: "/setting", element: <Setting/>},
 
     // 关于
-    about: {path: "/setting", element: <About/>},
+    about: {path: "/about", element: <About/>},
 
 }
