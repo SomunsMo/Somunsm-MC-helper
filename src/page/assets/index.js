@@ -106,9 +106,7 @@ const Assets = () => {
     }
 
     // 查看资源
-    const viewAsset = async (assetName, index) => {
-        setSelectedIndex(index);
-
+    const viewAsset = async (assetName) => {
         // 资源存储时的Hash文件名
         const assetHash = AssetStore.getAssets()[assetName];
         if (!assetHash) {
@@ -155,6 +153,13 @@ const Assets = () => {
         }
     }
 
+    const assetItemClick = (assetName, index) => {
+        setSelectedIndex(index);
+        AssetStore.setViewerAssetIndex(index);
+
+        viewAsset(assetName, index);
+    }
+
     // 导出资源文件
     const exportAsset = () => {
         console.log(assetInfo.assetName);
@@ -179,7 +184,7 @@ const Assets = () => {
         const assetName = filteredAssetList[index];
         return (
             <li tabIndex={0}
-                onClick={() => viewAsset(assetName, index)}
+                onClick={() => assetItemClick(assetName, index)}
                 key={index}
                 style={getCheckedStyle(style, index)}>
                 [{index + 1}]&nbsp;{assetName}
