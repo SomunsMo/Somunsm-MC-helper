@@ -52,6 +52,7 @@ export const HomeStyle = styled.div`
       button {
         width: 40px;
         height: 100%;
+        padding: 0;
         margin: 0;
 
         color: dimgrey;
@@ -71,9 +72,7 @@ export const HomeStyle = styled.div`
       }
 
       .closeWindow:hover {
-        fill: white;
-        color: white;
-        background-color: #c42b1c;
+        background-color: red;
       }
 
       .closeWindow::before {

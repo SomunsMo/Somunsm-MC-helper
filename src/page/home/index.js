@@ -3,7 +3,7 @@ import HomeNavigation from "./navigation";
 import {HomeStyle} from "./style";
 import {Outlet} from "react-router";
 
-import close from "../../resource/close.svg"
+import {ReactComponent as Close} from "../../resource/close.svg"
 import {ReactComponent as Minus} from "../../resource/minus.svg"
 import useStore from "../../store/rootStore";
 import {Observer} from "mobx-react-lite";
@@ -37,9 +37,8 @@ const Home = () => {
                         <div className={"softTitle"}>Somunsm MC Helper</div>
                         <div className={"ctrlBtnArea"}>
                             <div className={"gameVer"}>游戏版本 - {ConfigStore.activeGameVer}</div>
-                            <button onClick={minimizeWindow}><Minus fill={"green"}/></button>
-                            <button className={"closeWindow"} onClick={closeWindow}><img src={close} alt={"关闭窗口"}/>
-                            </button>
+                            <button onClick={minimizeWindow}><Minus/></button>
+                            <button className={"closeWindow"} onClick={closeWindow}><Close/></button>
                         </div>
                     </div>
                     <div className={"mainContentArea"}>
