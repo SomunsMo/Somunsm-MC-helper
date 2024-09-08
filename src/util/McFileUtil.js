@@ -59,7 +59,7 @@ const FILE_TYPE = {
     // 音频
     sound: ["mp3", "ogg"],
     // 文本
-    text: ["txt", "json"],
+    text: ["txt", "json", "mcmeta"],
     // 压缩包
     zip: ["zip", "7z"],
 };
