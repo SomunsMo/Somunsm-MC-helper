@@ -47,6 +47,20 @@ const Assets = () => {
         }
     }, []);
 
+    // 当列表内容被更改
+    useEffect(() => {
+        if (!filteredAssetList) {
+            return;
+        }
+
+        // 获取store中存储的当前选中资源索引
+        const storeSelectedIndex = AssetStore.getViewerAssetIndex();
+        if (storeSelectedIndex) {
+            setSelectedIndex(storeSelectedIndex);
+            viewAsset(filteredAssetList[storeSelectedIndex]);
+        }
+    }, [filteredAssetList]);
+
     // 搜索防抖
     useEffect(() => {
         const assetNames = Object.keys(AssetStore.getAssets())
