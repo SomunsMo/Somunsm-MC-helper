@@ -7,8 +7,6 @@ const stitchingPath = (...dir) => {
         dir: null,
     };
 
-    console.log("dir", dir)
-
     if (!dir || dir.length === 0) {
         return result;
     }

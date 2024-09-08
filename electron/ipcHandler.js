@@ -162,7 +162,7 @@ const ipcHandler = (window, db) => {
 
         hash.update(fileData);
 
-        const result = {
+        return {
             fileName: fileHash,
             fileHash: hash.digest("hex"),
             fileSize: fileStat.size,
@@ -170,10 +170,6 @@ const ipcHandler = (window, db) => {
             path: filePath,
             data: fileData.toString("utf-8")
         };
-
-        console.log(result)
-
-        return result;
     });
 
     // 导出资源文件
