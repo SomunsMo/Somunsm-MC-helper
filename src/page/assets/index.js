@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {PAGE_MAP} from "../../router/PageMap";
 import useDebounce from "../../components/useDebounce";
 import {FixedSizeList as List} from "react-window";
+import useStore from "../../store/rootStore";
 
 const DEFAULT_ASSET_INFO = {
     assetName: "-",
@@ -24,10 +25,10 @@ const DEFAULT_ASSET_INFO = {
 const SEARCH_MAX_LENGTH = 32;
 
 const Assets = () => {
+    const {AssetStore} = useStore();
+
     const navigate = useNavigate();
 
-    // 资源列表 - 用于数据处理
-    const [assets, setAssets] = useState({})
     // 资源名称列表 - 用于展示
     const [filteredAssetList, setFilteredAssetList] = useState([]);
     // 资产列表选中资产的索引
@@ -41,12 +42,14 @@ const Assets = () => {
     const debounce = useDebounce(searchText, 200);
 
     useEffect(() => {
-        refreshAssetList();
+        if (!!AssetStore.getAssets()) {
+            refreshAssetList();
+        }
     }, []);
 
     // 搜索防抖
     useEffect(() => {
-        const assetNames = Object.keys(assets)
+        const assetNames = Object.keys(AssetStore.getAssets())
         setFilteredAssetList(assetNames.filter(v => v.includes(searchText)));
     }, [debounce]);
 
@@ -59,6 +62,8 @@ const Assets = () => {
 
     // 刷新资源列表
     const refreshAssetList = async () => {
+        console.log("[Asset] read assets index...")
+
         const assetsJson = await window.ElectronAPI.readAssetsIndex();
         if (!assetsJson) {
             console.error("读取资源Json文件失败");
@@ -67,7 +72,7 @@ const Assets = () => {
 
         const assets = JSON.parse(assetsJson);
 
-        setAssets(assets.objects);
+        AssetStore.setAssets(assets.objects);
         setFilteredAssetList(Object.keys(assets.objects));
     }
 
@@ -83,7 +88,7 @@ const Assets = () => {
         // 资源原始名称
         const assetName = e.target.innerText;
         // 资源存储时的Hash文件名
-        const assetHash = assets[assetName];
+        const assetHash = AssetStore.getAssets()[assetName];
 
         console.log(assetName, assetHash);
 
