@@ -111,6 +111,9 @@ const Assets = () => {
 
         // 资源存储时的Hash文件名
         const assetHash = AssetStore.getAssets()[assetName];
+        if (!assetHash) {
+            return;
+        }
         console.log(assetName);
 
         // 读取资源文件信息
