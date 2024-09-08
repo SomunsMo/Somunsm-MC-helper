@@ -1,9 +1,9 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, toJS} from "mobx";
 
 // 默认文本
 export const DEFAULT_TEXT = {
     // 资源列表
-    assets: {},
+    assets: null,
     // 当前预览的资源信息
     assetInfo: null,
 
@@ -14,7 +14,7 @@ export const DEFAULT_TEXT = {
  */
 class AssetStore {
     // 资源列表 - 从文件中读取的数据
-    assets = {};
+    assets = DEFAULT_TEXT.assets;
     // 当前预览的资源信息
     assetInfo = DEFAULT_TEXT.assetInfo;
 
@@ -25,7 +25,15 @@ class AssetStore {
 
     //Action
 
+    // 判断资源列表是否是空的
+    assetsIsNull = () => {
+        return DEFAULT_TEXT.assets === toJS(this.assets);
+    }
+
     getAssets = () => {
+        if (this.assetsIsNull()) {
+            return {};
+        }
         return this.assets;
     }
 

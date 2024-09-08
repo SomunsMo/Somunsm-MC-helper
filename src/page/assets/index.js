@@ -42,7 +42,7 @@ const Assets = () => {
     const debounce = useDebounce(searchText, 200);
 
     useEffect(() => {
-        if (!!AssetStore.getAssets()) {
+        if (AssetStore.assetsIsNull()) {
             refreshAssetList();
         }
     }, []);
