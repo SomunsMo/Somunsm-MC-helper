@@ -64,8 +64,18 @@ const Assets = () => {
     // 搜索防抖
     useEffect(() => {
         const assetNames = Object.keys(AssetStore.getAssets())
+        // 如果没有要过滤的值，则直接显示全部资源名
+        if (!searchText) {
+            setFilteredAssetList(assetNames);
+            return;
+        }
+
+        setSelectedIndex(null);
+        AssetStore.setViewerAssetIndex(null);
         setFilteredAssetList(assetNames.filter(v => v.includes(searchText)));
     }, [debounce]);
+
+    //---
 
     // 获取资源预览区域的默认文本，如果正在预览资源则灭有默认文本
     const browseDefaultText = () => {
