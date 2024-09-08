@@ -183,7 +183,7 @@ const Assets = () => {
                                  content={assetInfo.fileCreationTime}
                                  inline={true}/>
 
-                    <button className={"assetSaveAs"} onClick={exportAsset}>导出文件</button>
+                    <button className={"assetSaveAs"} onClick={exportAsset}>导出</button>
                 </div>
                 <div className={"assetBrowseArea"}>
                     <Outlet/>
