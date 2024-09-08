@@ -87,8 +87,7 @@ const Assets = () => {
 
         // 资源存储时的Hash文件名
         const assetHash = AssetStore.getAssets()[assetName];
-
-        console.log(assetName, assetHash);
+        console.log(assetName);
 
         // 读取资源文件信息
         const assetInfo = await window.ElectronAPI.readAssets(assetHash.hash);
