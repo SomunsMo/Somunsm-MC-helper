@@ -1,4 +1,3 @@
-import Error404 from "../page/error/404";
 import {PAGE_MAP} from "./PageMap";
 
 export const RouterMap = [
@@ -24,7 +23,7 @@ export const RouterMap = [
         ]
     },
     // 重定向
-    {path: 'home', redirectTo: '/'},
-    // 404找不到
-    {path: '*', element: <Error404/>}
+    {path: 'home', redirectTo: PAGE_MAP.home.path},
+    // 没有对应页面-404
+    {path: PAGE_MAP.notFound.path, element: PAGE_MAP.notFound.element}
 ];
