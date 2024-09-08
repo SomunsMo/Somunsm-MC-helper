@@ -10,9 +10,7 @@ const TextViewer = () => {
 
     return (
         <TextViewerStyle>
-            <textarea disabled={true}>
-                {state.text}
-            </textarea>
+            <textarea disabled={true} value={state.text}/>
         </TextViewerStyle>
     );
 };
