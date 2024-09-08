@@ -1,6 +1,4 @@
 import Error404 from "../page/error/404";
-import Setting from "../page/setting";
-import About from "../page/about";
 import {PAGE_MAP} from "./PageMap";
 
 export const RouterMap = [
@@ -20,6 +18,10 @@ export const RouterMap = [
             },
             {path: 'setting', element: <Setting/>},
             {path: 'about', element: <About/>}
+
+            {path: PAGE_MAP.settings.path, element: PAGE_MAP.settings.element},
+
+            {path: PAGE_MAP.about.path, element: PAGE_MAP.about.element}
         ]
     },
     // 重定向

@@ -1,6 +1,6 @@
 import React from "react";
 import ConfigStore from "./configStore";
-import AssetViewStore from "./assetViewStore";
+import AssetStore from "./assetStore";
 
 /**
  * 集中管理Store
@@ -9,7 +9,7 @@ class RootStore {
 
     constructor() {
         this.ConfigStore = new ConfigStore();
-        this.AssetViewStore = new AssetViewStore();
+        this.AssetStore = new AssetStore();
     }
 
 }
