@@ -14,10 +14,17 @@ const Description = ({name, content, inline = false, clickCopy = false}) => {
         window.ElectronAPI.clipboard(content.toString());
     }
 
+    const getTitle = ()=>{
+        if (clickCopy){
+            return "点击复制";
+        }
+
+    }
+
     return (
         <DescriptionStyle aline={inline} clickcopy={clickCopy}>
             <h5>{name}：</h5>
-            <span onClick={clickDesc}>{content}</span>
+            <span onClick={clickDesc} title={getTitle()}>{content}</span>
         </DescriptionStyle>
     );
 };
