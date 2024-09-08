@@ -82,11 +82,9 @@ const Assets = () => {
     }
 
     // 查看资源
-    const viewAsset = async (e, index) => {
+    const viewAsset = async (assetName, index) => {
         setSelectedIndex(index);
 
-        // 资源原始名称
-        const assetName = e.target.innerText;
         // 资源存储时的Hash文件名
         const assetHash = AssetStore.getAssets()[assetName];
 
@@ -151,10 +149,17 @@ const Assets = () => {
     }
 
     // 虚拟列表的项
-    const Row = ({index, style}) => (
-        <li tabIndex={0} onClick={(e) => viewAsset(e, index)} key={index}
-            style={getCheckedStyle(style, index)}>{filteredAssetList[index]}</li>
-    );
+    const Row = ({index, style}) => {
+        const assetName = filteredAssetList[index];
+        return (
+            <li tabIndex={0}
+                onClick={() => viewAsset(assetName, index)}
+                key={index}
+                style={getCheckedStyle(style, index)}>
+                [{index + 1}]&nbsp;{assetName}
+            </li>
+        )
+    };
 
     return (
         <AssetsStyle>
