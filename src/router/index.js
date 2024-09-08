@@ -16,8 +16,7 @@ export const RouterMap = [
                     {path: PAGE_MAP.unknownViewer.path, element: PAGE_MAP.unknownViewer.element},
                 ]
             },
-            {path: 'setting', element: <Setting/>},
-            {path: 'about', element: <About/>}
+
 
             {path: PAGE_MAP.settings.path, element: PAGE_MAP.settings.element},
 
