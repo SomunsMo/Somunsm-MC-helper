@@ -36,7 +36,7 @@ const Home = () => {
                     <div className={"titleBar"}>
                         <div className={"softTitle"}>Somunsm MC Helper</div>
                         <div className={"ctrlBtnArea"}>
-                            <div className={"gameVer"}>游戏版本-{ConfigStore.activeGameVer}</div>
+                            <div className={"gameVer"}>游戏版本 - {ConfigStore.activeGameVer}</div>
                             <button onClick={minimizeWindow}><Minus fill={"green"}/></button>
                             <button className={"closeWindow"} onClick={closeWindow}><img src={close} alt={"关闭窗口"}/>
                             </button>
