@@ -70,11 +70,9 @@ const createWindow = () => {
         // 打开开发者工具
         window.webContents.openDevTools();
     } else {
-        window.loadFile(path.join(__dirname, "build/index.html"));
+        const rootDir = path.dirname(__dirname);
+        window.loadFile(path.join(rootDir, "out", "index.html"));
     }
-
-    window.webContents.openDevTools();
-
 }
 
 // 创建窗口

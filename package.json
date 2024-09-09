@@ -3,6 +3,7 @@
   "author": "Somunsm",
   "description": "Somunsm MC Helper",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "main": "electron/main.js",
   "dependencies": {
@@ -62,11 +63,19 @@
   "build": {
     "productName": "Somunsm MC Helper",
     "appId": "somunsm.electron.helper.mc.app",
+    "asar": true,
     "directories": {
       "output": "dist"
     },
-    "extraFiles": [
-      "./build"
+    "files": [
+      "out/**/*",
+      "electron/**/*",
+      "**/*",
+      "!public/**/*",
+      "!src/**/*",
+      "!babel.config.js",
+      "!craco.config.js",
+      "!.**"
     ],
     "nsis": {
       "oneClick": false,
