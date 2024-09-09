@@ -63,6 +63,7 @@
   "build": {
     "productName": "Somunsm MC Helper",
     "appId": "somunsm.electron.helper.mc.app",
+    "copyright": "索姆斯小鼠(Somunsm)",
     "asar": true,
     "directories": {
       "output": "dist"
