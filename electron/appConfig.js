@@ -124,9 +124,11 @@ class AppConfig {
 //---
 
     // 初始化应用配置
-    initConfig(db) {
+    initConfig(db, configDir) {
         console.log("start initializing app config...");
 
+        // 存储应用的配置文件夹
+        privateData.get(this).configDir = configDir;
         // 设置数据库实例
         privateData.get(this).db = db;
 

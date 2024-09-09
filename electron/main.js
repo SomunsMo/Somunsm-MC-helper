@@ -79,14 +79,18 @@ const createWindow = () => {
 
 // 创建窗口
 app.whenReady().then(() => {
+    // 获取应用的配置文件夹
+    const configDir = app.getPath('userData');
+    console.log("userDataPath:", configDir);
+
     // 创建窗口
     createWindow()
     // 实例化数据库
-    db = new BetterSqlite3(path.join(__dirname, "app.db"));
+    db = new BetterSqlite3(path.join(configDir, "app.db"));
     // 初始化数据库
     dbInit();
     // 初始化配置
-    appConfig.initConfig(db);
+    appConfig.initConfig(db, configDir);
 
 
     // 调用IPC处理器
