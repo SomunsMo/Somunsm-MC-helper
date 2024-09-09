@@ -44,7 +44,7 @@ const McRoots = () => {
         console.log(dir);
 
         // 是否取消选择文件夹了
-        if (dir.cancel) {
+        if (dir.canceled) {
             return;
         }
 
