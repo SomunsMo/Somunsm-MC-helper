@@ -33,7 +33,7 @@
     "test": "craco test",
     "eject": "craco eject",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "npm run build && electron-builder"
   },
   "eslintConfig": {
     "extends": [
