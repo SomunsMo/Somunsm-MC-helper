@@ -30,28 +30,28 @@ const Home = () => {
     }
 
     return (
-        <Observer>
-            {() => (
-                <HomeStyle>
-                    <div className={"titleBar"}>
-                        <div className={"softTitle"}>Somunsm MC Helper</div>
-                        <div className={"ctrlBtnArea"}>
+        <HomeStyle>
+            <div className={"titleBar"}>
+                <div className={"softTitle"}>Somunsm MC Helper</div>
+                <div className={"ctrlBtnArea"}>
+                    <Observer>
+                        {() => (
                             <div className={"gameVer"}>游戏版本 - {ConfigStore.activeGameVer}</div>
-                            <button onClick={minimizeWindow}><Minus/></button>
-                            <button className={"closeWindow"} onClick={closeWindow}><Close/></button>
-                        </div>
-                    </div>
-                    <div className={"mainContentArea"}>
-                        <div className={"homeNavigation"}>
-                            <HomeNavigation/>
-                        </div>
-                        <div className={"content"}>
-                            <Outlet/>
-                        </div>
-                    </div>
-                </HomeStyle>
-            )}
-        </Observer>
+                        )}
+                    </Observer>
+                    <button onClick={minimizeWindow}><Minus/></button>
+                    <button className={"closeWindow"} onClick={closeWindow}><Close/></button>
+                </div>
+            </div>
+            <div className={"mainContentArea"}>
+                <div className={"homeNavigation"}>
+                    <HomeNavigation/>
+                </div>
+                <div className={"content"}>
+                    <Outlet/>
+                </div>
+            </div>
+        </HomeStyle>
     );
 };
 
