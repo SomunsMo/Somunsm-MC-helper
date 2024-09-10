@@ -75,6 +75,31 @@ const createWindow = () => {
     }
 }
 
+// 检测实例是否重复运行
+
+// 获取实例锁
+const instanceLock = app.requestSingleInstanceLock();
+if (!instanceLock) {
+    console.log("instance already running, this instance will be quit");
+    // 重复运行，退出程序
+    app.quit();
+} else {
+    // 如果获取到了实例锁（说明是第一个运行中的实例）
+
+    //创建多实例监听
+    app.on('second-instance', (event, commandLine, workingDirectory) => {
+        if (window) {
+            // 如果第一个实例是最小化状态，则调出窗口
+            if (window.isMinimized()) {
+                window.restore();
+            }
+
+            window.focus();
+        }
+    });
+}
+
+
 // 创建窗口
 app.whenReady().then(() => {
     // 获取应用的配置文件夹
