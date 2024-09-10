@@ -1,5 +1,7 @@
-// 配置项及对应关系（数据库名称、默认值）
 const path = require("path");
+const {app} = require('electron')
+
+// 配置项及对应关系（数据库名称、默认值）
 const CONFIG_MAP = {
     // Mc根目录
     gameRootDir: {dbName: "gameRootDir", defaultValue: null},
@@ -129,7 +131,7 @@ class AppConfig {
 //---
 
     // 初始化应用配置
-    initConfig(configDir, db, app) {
+    initConfig(configDir, db) {
         console.log("start initializing app config...");
 
         // 存储应用的配置文件夹
