@@ -10,7 +10,6 @@ export const DEFAULT_TEXT = {
         app: "unknown",
     },
     gameVer: "无",
-    // 游戏根目录
     gameRootDir: "-",
 };
 
