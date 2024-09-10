@@ -17,15 +17,15 @@ export const DescriptionStyle = styled.div`
   & > span {
     font-size: small;
     color: grey;
-
-    ${props => {
-      if (props.clickcopy) return "cursor: pointer;";
-    }}
-
+    
     text-overflow: ellipsis;
 
     user-select: text;
     cursor: default;
+    
+    ${props => {
+      if (props.clickcopy) return "cursor: pointer;";
+    }}
   }
 
   & > span:hover {
