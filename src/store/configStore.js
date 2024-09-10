@@ -3,7 +3,12 @@ import {vailMcDir} from "../util/McFileUtil";
 
 // 默认文本
 export const DEFAULT_TEXT = {
-    // 游戏版本
+    appVer: {
+        node: "unknown",
+        chrome: "unknown",
+        electron: "unknown",
+        app: "unknown",
+    },
     gameVer: "无",
     // 游戏根目录
     gameRootDir: "-",
@@ -13,6 +18,8 @@ export const DEFAULT_TEXT = {
  * 软件配置Store
  */
 class ConfigStore {
+    // 软件及依赖的版本信息
+    appVer = DEFAULT_TEXT.appVer;
     // 游戏根目录
     gameRootDir = DEFAULT_TEXT.gameRootDir;
     // 工具选定的游戏版本
@@ -43,8 +50,18 @@ class ConfigStore {
         this.activeGameVer = ver;
     }
 
-    setAssetId(id) {
+    // 获取软件及依赖的版本信息
+    getAppVer = () => {
+        console.log(this.appVer);
+        return this.appVer;
+    }
 
+    // 缓存软件及依赖的版本信息
+    setAppVer = (ver) => {
+        if (!ver) {
+            return;
+        }
+        this.appVer = ver;
     }
 
 }

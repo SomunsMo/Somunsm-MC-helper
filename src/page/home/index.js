@@ -12,6 +12,14 @@ const Home = () => {
     const {ConfigStore} = useStore();
 
     useEffect(() => {
+
+        // 获取软件信息
+        window.ElectronAPI.getAppVer()
+            .then(res => {
+                console.log(res);
+                ConfigStore.setAppVer(res);
+            });
+
         // 屏蔽刷新快捷键
         window.addEventListener('keydown', (ev) => {
             const isHotkey1 = ev.key === "F5";
