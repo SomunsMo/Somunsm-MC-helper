@@ -9,10 +9,14 @@ const About = () => {
         window.ElectronAPI.openUrl(url);
     }
 
-
-    const toBilibili = () => {
-        openUrl("https://space.bilibili.com/66932246");
-    }
+    // 获取一个自定义超链接
+    const getLink = (url, text, title) => {
+        return (
+            <span className={"link"} onClick={() => openUrl(url)} title={title}>
+                {text}
+            </span>
+        );
+    };
 
     return (
         <AboutStyle>
