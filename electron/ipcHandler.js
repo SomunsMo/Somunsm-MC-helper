@@ -7,7 +7,7 @@ const {stitchingAssetPath, getAssetNameByAssetName} = require("./util/assetsUtil
 const crypto = require('crypto');
 
 // 处理IPC通信
-const ipcHandler = (window, db) => {
+const ipcHandler = (window) => {
     // 最小化窗口处理器
     ipcMain.handle("minimizeWindow", () => window.minimize());
 
