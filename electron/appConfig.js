@@ -76,6 +76,11 @@ class AppConfig {
         });
     }
 
+    // 获取应用版本
+    getAppVer() {
+        return privateData.get(this).app.getVersion();
+    }
+
     getGameRootDir() {
         return privateData.get(this).configs.gameRootDir;
     }
@@ -124,13 +129,15 @@ class AppConfig {
 //---
 
     // 初始化应用配置
-    initConfig(db, configDir) {
+    initConfig(configDir, db, app) {
         console.log("start initializing app config...");
 
         // 存储应用的配置文件夹
         privateData.get(this).configDir = configDir;
-        // 设置数据库实例
+        // 缓存数据库实例
         privateData.get(this).db = db;
+        // 缓存ElectronApp实例
+        privateData.get(this).app = app;
 
         // 初始化各配置
         Object.keys(CONFIG_MAP).forEach(configKey => {
