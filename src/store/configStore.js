@@ -51,7 +51,6 @@ class ConfigStore {
 
     // 获取软件及依赖的版本信息
     getAppVer = () => {
-        console.log(this.appVer);
         return this.appVer;
     }
 
