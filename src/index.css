@@ -66,6 +66,13 @@ select {
 
 }
 
+hr {
+    width: 75%;
+
+    border: none;
+    border-bottom: 1px solid #eaeaea;
+}
+
 *:focus {
     /*outline: none; !* 移除默认的焦点轮廓 *!*/
     /*box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25) inset;*/
