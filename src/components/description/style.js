@@ -25,6 +25,7 @@ export const DescriptionStyle = styled.div`
     text-overflow: ellipsis;
 
     user-select: text;
+    cursor: default;
   }
 
   & > span:hover {
