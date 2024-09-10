@@ -13,6 +13,8 @@ contextBridge.exposeInMainWorld("ElectronAPI", {
     // 用系统默认浏览器打开链接
     openUrl: (url) => ipcRenderer.invoke("openUrl", url),
 
+    // 获取软件及依赖的版本信息
+    getAppVer: async () => await ipcRenderer.invoke("getAppVer"),
     // 获取软件配置
     getConfigs: () => ipcRenderer.invoke("getConfigs"),
 

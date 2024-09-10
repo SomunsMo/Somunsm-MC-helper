@@ -29,6 +29,17 @@ const ipcHandler = (window) => {
     // 用系统默认浏览器打开链接
     ipcMain.handle("openUrl", (e, url) => shell.openExternal(url));
 
+    // 获取软件及依赖的版本信息
+    ipcMain.handle("getAppVer", () => {
+        const versions = process.versions;
+        return {
+            node: versions.node,
+            chrome: versions.chrome,
+            electron: versions.electron,
+            app: appConfig.getAppVer(),
+        };
+    });
+
     // 读取软件配置
     ipcMain.handle("getConfigs", () => {
         return appConfig.getConfigs() || {};
