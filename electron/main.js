@@ -88,11 +88,11 @@ app.whenReady().then(() => {
     // 初始化数据库
     dbInit();
     // 初始化配置
-    appConfig.initConfig(db, configDir);
+    appConfig.initConfig(configDir, db);
 
 
     // 调用IPC处理器
-    ipcHandler(window, db);
+    ipcHandler(window);
 
 
     // 官方示例中表明这是兼容MacOS后台运行用的
