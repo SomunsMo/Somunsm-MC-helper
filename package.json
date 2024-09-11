@@ -63,7 +63,7 @@
     "productName": "Somunsm MC Helper",
     "appId": "somunsm.electron.helper.mc.app",
     "copyright": "索姆斯小鼠(Somunsm)",
-    "asar": false,
+    "asar": true,
     "asarUnpack": [
       "**/*.node"
     ],
@@ -84,15 +84,15 @@
       "oneClick": false,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "./favicon.ico",
-      "uninstallerIcon": "./favicon.ico",
-      "installerHeaderIcon": "./favicon.ico",
+      "installerIcon": "public/favicon.ico",
+      "uninstallerIcon": "public/favicon.ico",
+      "installerHeaderIcon": "public/favicon.ico",
       "createDesktopShortcut": false,
       "createStartMenuShortcut": false,
       "shortcutName": "SomunsmMCT"
     },
     "win": {
-      "icon": "./favicon.ico",
+      "icon": "public/favicon.ico",
       "target": "portable"
     },
     "extends": null
