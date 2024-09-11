@@ -20,6 +20,7 @@ const ImageViewer = () => {
 
     // 鼠标按下时的位置
     const initialMouse = {x: 0, y: 0};
+    // 鼠标左键按下的坐标与图片左上角的坐标差
     // 当前图片的缩放倍率
     let zoomMagnification = 1;
 
@@ -28,7 +29,7 @@ const ImageViewer = () => {
     // img
     const imgRef = useRef();
 
-    // 图片实际展示坐标
+    // 图片实际展示时左上角的坐标
     const [position, setPosition] = useState({x: 0, y: 0});
     // 当前图片缩放倍率的展示数值
     const [zoomText, setZoomText] = useState(zoomMagnification);
@@ -173,6 +174,7 @@ const ImageViewer = () => {
         // 记录鼠标位置
         initialMouse.x = e.clientX - position.x;
         initialMouse.y = e.clientY - position.y;
+        // 将鼠标按下坐标 - 原图片左上角坐标 = 与图片左上角相差多远
 
         // 添加全局鼠标移动和鼠标释放监听
         document.addEventListener('mousemove', handleMouseMove);
@@ -187,6 +189,7 @@ const ImageViewer = () => {
         // 计算新的位置
         const x = e.clientX - initialMouse.x;
         const y = e.clientY - initialMouse.y;
+        // 计算新的位置 | 鼠标所在坐标 - 鼠标相对图片左上角的偏移值 = 图片左上角应在的坐标
 
         // 更新位置
         updateImgPosition(x, y);
