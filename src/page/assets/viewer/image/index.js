@@ -12,6 +12,10 @@ const ZOOM_MAX = 100;
 // 最大的合适缩放倍率
 const ZOOM_FITTING_MAX = 10;
 
+//--- 下面的变量放外部是避免页面更新导致变量重置
+
+// 当前图片的缩放倍率
+let zoomMagnification = 1;
 
 const ImageViewer = () => {
     // 获取路由信息 - 获取传入的参数
@@ -20,8 +24,6 @@ const ImageViewer = () => {
 
     // 鼠标左键按下的坐标与图片左上角的坐标差
     const offsetPosition = {x: 0, y: 0};
-    // 当前图片的缩放倍率
-    let zoomMagnification = 1;
 
     // 查看器的根元素
     const viewerRootRef = useRef();
