@@ -77,6 +77,7 @@ const ImageViewer = () => {
         setPosition({x: imgRef.current.offsetLeft, y: imgRef.current.offsetTop})
     }
 
+    //--- 事件处理方法
 
     // 查看器鼠标按下后的移动事件监听器
     const handleMouseMove = (e) => {
@@ -103,6 +104,9 @@ const ImageViewer = () => {
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
     }
+
+
+    //--- 功能方法
 
     // 设置图片缩放倍率
     const setImgZoom = (zoom) => {
@@ -137,19 +141,18 @@ const ImageViewer = () => {
         const viewerWidth = viewerRootRef.current.clientWidth;
         const viewerHeight = viewerRootRef.current.clientHeight;
         // img宽高
-        const imgWidth = imgRef.current.clientWidth;
-        const imgHeight = imgRef.current.clientHeight;
+        const imgSize = getImgSize();
 
         // 计算差值
-        differenceValue.x = imgWidth - viewerWidth;
-        differenceValue.y = imgHeight - viewerHeight;
+        differenceValue.x = imgSize.width - viewerWidth;
+        differenceValue.y = imgSize.height - viewerHeight;
 
         // 得出相差最大的方向
         let finalZoom;
         if (differenceValue.x > differenceValue.y) {
-            finalZoom = viewerWidth / imgWidth;
+            finalZoom = viewerWidth / imgSize.width;
         } else {
-            finalZoom = viewerHeight / imgHeight;
+            finalZoom = viewerHeight / imgSize.height;
         }
 
 
@@ -158,6 +161,14 @@ const ImageViewer = () => {
         // 判断是否超过最大合适缩放倍率，超过则返回最大合适倍率，否则返回计算的值
         return ZOOM_FITTING_MAX < zoomRound ? ZOOM_FITTING_MAX : zoomRound;
     };
+
+    // 获取图片组件的宽高
+    const getImgSize = () => {
+        return {
+            width: imgRef.current.clientWidth,
+            height: imgRef.current.clientHeight
+        }
+    }
 
     // 更新图片移动位置
     const updateImgPosition = (x, y) => {
@@ -171,12 +182,11 @@ const ImageViewer = () => {
         const viewerWidth = viewerRootRef.current.clientWidth;
         const viewerHeight = viewerRootRef.current.clientHeight;
         // img宽高
-        const imgWidth = imgRef.current.clientWidth;
-        const imgHeight = imgRef.current.clientHeight;
+        const imgSize = getImgSize();
 
         // 计算中心位置
-        const imgLeft = (viewerWidth - imgWidth) / 2;
-        const imgTop = (viewerHeight - imgHeight) / 2;
+        const imgLeft = (viewerWidth - imgSize.width) / 2;
+        const imgTop = (viewerHeight - imgSize.height) / 2;
 
         // 重置到中心位置
         updateImgPosition(imgLeft, imgTop);
