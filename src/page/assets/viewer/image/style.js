@@ -15,6 +15,8 @@ export const ImageViewerStyle = styled.div`
     position: absolute;
     transition-property: width, height, transform;
     transition-duration: 350ms;
+
+    image-rendering: pixelated;
   }
 
   .resetImg {
