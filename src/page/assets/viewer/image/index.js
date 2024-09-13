@@ -77,6 +77,27 @@ const ImageViewer = () => {
         setPosition({x: imgRef.current.offsetLeft, y: imgRef.current.offsetTop})
     }
 
+
+    // 查看器鼠标按下后的移动事件监听器
+    const handleMouseMove = (e) => {
+        // 计算新的位置 | 鼠标所在坐标 - 鼠标相对图片左上角的偏移值 = 图片左上角应在的坐标
+        const x = e.clientX - offsetPosition.x;
+        const y = e.clientY - offsetPosition.y;
+
+        // 更新位置
+        updateImgPosition(x, y);
+        setPosition({x, y});
+    };
+
+    // 鼠标按下移动后的抬起事件监听器
+    const handleMouseUp = () => {
+        viewerRootRef.current.style.cursor = "default";
+
+        // 移除鼠标移动和释放的监听
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+    };
+
     // 移除鼠标移动和释放的监听
     const removeMouseListener = () => {
         document.removeEventListener('mousemove', handleMouseMove);
@@ -164,7 +185,8 @@ const ImageViewer = () => {
     // 阻止事件冒泡
     const stopPropagation = (e) => e.stopPropagation();
 
-    //---
+
+    //--- 组件互动
 
     // 查看器鼠标按下事件监听器
     const mouseDown = (e) => {
@@ -181,26 +203,6 @@ const ImageViewer = () => {
         // 阻止默认行为(避免出现图片的拖动鬼影)
         e.preventDefault();
     }
-
-    // 查看器鼠标按下后的移动事件监听器
-    const handleMouseMove = (e) => {
-        // 计算新的位置 | 鼠标所在坐标 - 鼠标相对图片左上角的偏移值 = 图片左上角应在的坐标
-        const x = e.clientX - offsetPosition.x;
-        const y = e.clientY - offsetPosition.y;
-
-        // 更新位置
-        updateImgPosition(x, y);
-        setPosition({x, y});
-    };
-
-    // 鼠标按下移动后的抬起事件监听器
-    const handleMouseUp = () => {
-        viewerRootRef.current.style.cursor = "default";
-
-        // 移除鼠标移动和释放的监听
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-    };
 
     // 重置图片查看的变换参数
     const resetImg = (e) => {
