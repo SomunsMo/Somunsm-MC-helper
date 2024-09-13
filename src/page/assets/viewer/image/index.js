@@ -61,7 +61,9 @@ const ImageViewer = () => {
 
             // 更新缩放倍率
             setImgZoom(latestZoom)
-            updateImgZoom();
+
+
+
         }
 
         // 计算图片大小，如果图片超过查看区域高度，则缩小图片
@@ -69,7 +71,6 @@ const ImageViewer = () => {
 
         // 重置缩放
         setImgZoom(fittingZoom)
-        updateImgZoom();
 
         // 重置图片位置
         resetImgPosition();
@@ -119,6 +120,9 @@ const ImageViewer = () => {
 
         zoomMagnification = zoom;
         setZoomText(zoom);
+
+        // 更新视图
+        updateImgZoom();
     }
 
     // 更新图片缩放 num:缩放倍率 大于1则放大，小于1则缩小
