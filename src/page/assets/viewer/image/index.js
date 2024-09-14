@@ -51,15 +51,7 @@ const ImageViewer = () => {
         removeMouseListener();
 
         // 监听鼠标滚动
-        viewerRootRef.current.onwheel = (e) => {
-            const up = e.deltaY < 0;
-
-            let latestZoom;
-            if (up) {
-                latestZoom = zoomMagnification * (1 + UNIT_ZOOM);
-            } else {
-                latestZoom = zoomMagnification * (1 - UNIT_ZOOM);
-            }
+        viewerRootRef.current.onwheel = handleMouseWheel;
 
         // 设置图片显示模式
         setImgSmoothMode()
@@ -77,6 +69,35 @@ const ImageViewer = () => {
     }
 
     //--- 事件处理方法
+
+    // 鼠标滚轮滚动
+    const handleMouseWheel = (e) => {
+        // 获取滚轮滚动方向 | ture=向上 false=向下
+        const up = e.deltaY < 0;
+        // 获取鼠标坐标
+        const arrowPosition = {x: e.clientX, y: e.clientY};
+
+        let latestZoom;
+        if (up) {
+            latestZoom = zoomMagnification * (1 + UNIT_ZOOM);
+        } else {
+            latestZoom = zoomMagnification * (1 - UNIT_ZOOM);
+        }
+
+        console.log(latestZoom);
+
+        // 更新缩放倍率
+        setImgZoom(latestZoom)
+
+        console.log(imgRef.current.style.transform);
+
+        // 判断光标是否在图片上
+
+
+        // 更新
+        // imgRef.current.style.transform = `scale(${zoomMagnification}) translate(${zoomMagnification * 10}px, ${zoomMagnification * 10}px)`
+
+    };
 
     // 查看器鼠标按下后的移动事件监听器
     const handleMouseMove = (e) => {
