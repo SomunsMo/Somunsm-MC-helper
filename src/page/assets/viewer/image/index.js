@@ -130,8 +130,12 @@ const ImageViewer = () => {
     }
 
     // 获取平滑模式状态的显示文本
-    const getSmoothModeText = () => {
-        if (smoothImg) {
+    const getSmoothModeText = (mode) => {
+        if (undefined === mode) {
+            mode = smoothImg;
+        }
+
+        if (mode) {
             return "平滑";
         } else {
             return "像素";
@@ -262,7 +266,7 @@ const ImageViewer = () => {
                     重置
                 </button>
                 <button onClick={changeSmoothMode} onMouseDown={stopPropagation}>
-                    {getSmoothModeText()}
+                    {getSmoothModeText(!smoothImg)}
                 </button>
             </div>
             <span>{getSmoothModeText()} | {Math.round(zoomText * 100)}%</span>
