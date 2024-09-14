@@ -284,7 +284,7 @@ const ImageViewer = () => {
 
     //--- 组件互动
 
-    // 查看器鼠标按下事件监听器
+    // 查看器鼠标按下
     const mouseDown = (e) => {
         viewerRootRef.current.style.cursor = "pointer";
 
