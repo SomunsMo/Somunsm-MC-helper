@@ -15,15 +15,16 @@ export const ImageViewerStyle = styled.div`
     position: absolute;
     transition-property: width, height, transform;
     transition-duration: 350ms;
-
-    image-rendering: pixelated;
   }
 
-  .resetImg {
+  .imgControlPanel {
+    display: flex;
     position: absolute;
     left: 10px;
     top: 10px;
     z-index: 10;
+    
+    flex-direction: column;
   }
 
   & > span {
@@ -31,7 +32,9 @@ export const ImageViewerStyle = styled.div`
     right: 10px;
     bottom: 10px;
     padding: 1px 5px;
+    line-height: 22px;
 
+    font-size: smaller;
     text-align: center;
     color: white;
 

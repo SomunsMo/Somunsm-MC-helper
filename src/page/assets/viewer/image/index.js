@@ -34,6 +34,8 @@ const ImageViewer = () => {
     const [position, setPosition] = useState({x: 0, y: 0});
     // 当前图片缩放倍率的展示数值
     const [zoomText, setZoomText] = useState(zoomMagnification);
+    // 图片是否以平滑模式显示
+    const [smoothImg, setSmoothImg] = useState(true);
 
     useEffect(() => {
         initImg();
@@ -59,14 +61,8 @@ const ImageViewer = () => {
                 latestZoom = zoomMagnification * (1 - UNIT_ZOOM);
             }
 
-            console.log(latestZoom);
-
-            // 更新缩放倍率
-            setImgZoom(latestZoom)
-
-
-
-        }
+        // 设置图片显示模式
+        setImgSmoothMode()
 
         // 计算图片大小，如果图片超过查看区域高度，则缩小图片
         const fittingZoom = getFittingZoom();
@@ -109,6 +105,38 @@ const ImageViewer = () => {
 
 
     //--- 功能方法
+
+    // 设置图片是否平滑显示
+    const setImgSmoothMode = (smooth) => {
+        console.log(smooth)
+
+        // 如果未传值则用state中的值更新显示组件
+        if (undefined === smooth) {
+            smooth = smoothImg;
+        } else {
+            setSmoothImg(smooth);
+        }
+
+        if (smooth) {
+            imgRef.current.style.imageRendering = "-webkit-optimize-contrast";
+        } else {
+            imgRef.current.style.imageRendering = "pixelated";
+        }
+    }
+
+    // 将平滑模式状态取反
+    const changeSmoothMode = () => {
+        setImgSmoothMode(!smoothImg);
+    }
+
+    // 获取平滑模式状态的显示文本
+    const getSmoothModeText = () => {
+        if (smoothImg) {
+            return "平滑";
+        } else {
+            return "像素";
+        }
+    }
 
     // 设置图片缩放倍率
     const setImgZoom = (zoom) => {
@@ -228,8 +256,13 @@ const ImageViewer = () => {
     return (
         <ImageViewerStyle ref={viewerRootRef} onMouseDown={mouseDown}>
             <img ref={imgRef} src={state.imgPath} alt={"?"} onLoad={initImg}/>
-            <button className={"resetImg"} onClick={resetImg} onMouseDown={stopPropagation}>重置</button>
-            <span>{Math.round(zoomText * 100)}%</span>
+
+            <div className={"imgControlPanel"}>
+                <button onClick={resetImg} onMouseDown={stopPropagation}>重置</button>
+                <button onClick={changeSmoothMode}
+                        onMouseDown={stopPropagation}>{getSmoothModeText()}</button>
+            </div>
+            <span>{getSmoothModeText()} | {Math.round(zoomText * 100)}%</span>
         </ImageViewerStyle>
     );
 };
