@@ -239,7 +239,6 @@ const ImageViewer = () => {
         const imgLeft = imgRef.current.offsetLeft;
         const imgTop = imgRef.current.offsetTop;
 
-        // 获取缩放比例
         // 图片真实尺寸
         const imgSize = getImgSize();
 
