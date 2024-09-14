@@ -98,8 +98,7 @@ const ImageViewer = () => {
         viewerRootRef.current.style.cursor = "default";
 
         // 移除鼠标移动和释放的监听
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
+        removeMouseListener()
     };
 
     // 移除鼠标移动和释放的监听
