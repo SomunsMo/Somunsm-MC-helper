@@ -16,6 +16,8 @@ const ZOOM_FITTING_MAX = 10;
 
 // 当前图片的缩放倍率
 let zoomMagnification = 1;
+// 图片元素的真实尺寸（显示的尺寸）
+const imgRefRealSize = {x: 0, y: 0};
 
 const ImageViewer = () => {
     // 获取路由信息 - 获取传入的参数
@@ -172,6 +174,10 @@ const ImageViewer = () => {
             zoom = ZOOM_MAX;
         }
 
+        // 计算图片显示的尺寸
+        imgRefRealSize.x = imgRef.current.clientWidth * zoom;
+        imgRefRealSize.y = imgRef.current.clientHeight * zoom;
+
         zoomMagnification = zoom;
         setZoomText(zoom);
 
@@ -220,7 +226,28 @@ const ImageViewer = () => {
         return ZOOM_FITTING_MAX < zoomRound ? ZOOM_FITTING_MAX : zoomRound;
     };
 
-    // 获取图片组件的宽高
+    /** 获取图片组件视觉上的原点坐标
+     *
+     * 计算公式：图片显示原点 = 浮动坐标 - (图片显示尺寸 - 图片尺寸) / 2
+     * 浮动坐标可通过"ref.current.offset?"获取，也可通过css left/top 获取
+     */
+    const getImgViewPosition = () => {
+        // 图片的视觉原点坐标
+        const viewPosition = {x: 0, y: 0};
+
+        // 获取元素原点
+        const imgLeft = imgRef.current.offsetLeft;
+        const imgTop = imgRef.current.offsetTop;
+
+        // 获取缩放比例
+        // 图片真实尺寸
+        const imgSize = getImgSize();
+
+        viewPosition.x = imgLeft - (imgRefRealSize.x - imgSize.width) / 2;
+        viewPosition.y = imgTop - (imgRefRealSize.y - imgSize.height) / 2;
+        return viewPosition;
+    }
+
     // 获取图片的宽高(图片的尺寸，不是视觉上的尺寸)
     const getImgSize = () => {
         return {
