@@ -258,9 +258,12 @@ const ImageViewer = () => {
             <img ref={imgRef} src={state.imgPath} alt={"?"} onLoad={initImg}/>
 
             <div className={"imgControlPanel"}>
-                <button onClick={resetImg} onMouseDown={stopPropagation}>重置</button>
-                <button onClick={changeSmoothMode}
-                        onMouseDown={stopPropagation}>{getSmoothModeText()}</button>
+                <button onClick={resetImg} onMouseDown={stopPropagation}>
+                    重置
+                </button>
+                <button onClick={changeSmoothMode} onMouseDown={stopPropagation}>
+                    {getSmoothModeText()}
+                </button>
             </div>
             <span>{getSmoothModeText()} | {Math.round(zoomText * 100)}%</span>
         </ImageViewerStyle>
