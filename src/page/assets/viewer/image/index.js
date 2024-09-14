@@ -221,6 +221,7 @@ const ImageViewer = () => {
     };
 
     // 获取图片组件的宽高
+    // 获取图片的宽高(图片的尺寸，不是视觉上的尺寸)
     const getImgSize = () => {
         return {
             width: imgRef.current.clientWidth,
