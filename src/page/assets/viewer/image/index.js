@@ -255,6 +255,15 @@ const ImageViewer = () => {
         }
     }
 
+    // 获取图片视觉上的宽高
+    const getImgViewSize = () => {
+        const imgSize = getImgSize();
+        return {
+            width: imgSize.width * zoomMagnification,
+            height: imgSize.height * zoomMagnification
+        }
+    }
+
     // 更新图片移动位置
     const updateImgPosition = (x, y) => {
         imgRef.current.style.left = x + "px";
