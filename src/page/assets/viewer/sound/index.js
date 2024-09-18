@@ -51,10 +51,16 @@ const SoundViewer = () => {
     }, []);
 
     // 当播放资源发生变更
-    useEffect(() => {
-        console.log(audioRef.current.duration);
-        setDuration(audioRef.current.duration);
-    }, [location]);
+    const onCanPlay = () => {
+        console.log("[audio player] can play.")
+
+        const audioDuration = audioRef.current.duration;
+        if (audioDuration) {
+            setDuration(audioDuration);
+        } else {
+            setDuration(0);
+        }
+    };
 
     const addPlayerListener = () => {
         // 播放器开始播放
@@ -69,7 +75,7 @@ const SoundViewer = () => {
 
             const percentage = (currentTime / duration) * 100;
 
-            console.log(percentage);
+            console.log("percentage:", percentage);
             setCurrentTime(currentTime);
             setProgressTime(percentage);
         }
@@ -128,7 +134,7 @@ const SoundViewer = () => {
             <button onClick={play}>{playing ? "暂停" : "播放"}</button>
             <button onClick={stop}>停止</button>
 
-            <audio ref={audioRef} src={state.filePath}></audio>
+            <audio ref={audioRef} src={state.filePath} onCanPlay={onCanPlay}></audio>
         </SoundViewerStyle>
     );
 };
