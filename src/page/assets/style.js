@@ -39,8 +39,6 @@ export const AssetsStyle = styled.div`
         line-height: 36px;
         border-radius: 3px;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         cursor: pointer;
       }
