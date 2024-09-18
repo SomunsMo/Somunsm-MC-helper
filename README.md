@@ -4,9 +4,9 @@
 
 [创建人B站](https://space.bilibili.com/66932246)
 
-## 适用版本
+## 适用平台
 
-Java版
+- Java
 
 ## 功能
 
