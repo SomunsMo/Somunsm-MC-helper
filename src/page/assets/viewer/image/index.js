@@ -226,41 +226,11 @@ const ImageViewer = () => {
         return ZOOM_FITTING_MAX < zoomRound ? ZOOM_FITTING_MAX : zoomRound;
     };
 
-    /** 获取图片组件视觉上的原点坐标
-     *
-     * 计算公式：图片显示原点 = 浮动坐标 - (图片显示尺寸 - 图片尺寸) / 2
-     * 浮动坐标可通过"ref.current.offset?"获取，也可通过css left/top 获取
-     */
-    const getImgViewPosition = () => {
-        // 图片的视觉原点坐标
-        const viewPosition = {x: 0, y: 0};
-
-        // 获取元素原点
-        const imgLeft = imgRef.current.offsetLeft;
-        const imgTop = imgRef.current.offsetTop;
-
-        // 图片真实尺寸
-        const imgSize = getImgSize();
-
-        viewPosition.x = imgLeft - (imgRefRealSize.x - imgSize.width) / 2;
-        viewPosition.y = imgTop - (imgRefRealSize.y - imgSize.height) / 2;
-        return viewPosition;
-    }
-
     // 获取图片的宽高(图片的尺寸，不是视觉上的尺寸)
     const getImgSize = () => {
         return {
             width: imgRef.current.clientWidth,
             height: imgRef.current.clientHeight
-        }
-    }
-
-    // 获取图片视觉上的宽高
-    const getImgViewSize = () => {
-        const imgSize = getImgSize();
-        return {
-            width: imgSize.width * zoomMagnification,
-            height: imgSize.height * zoomMagnification
         }
     }
 
