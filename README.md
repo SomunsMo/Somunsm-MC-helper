@@ -23,7 +23,6 @@ Java版
 
 ## 项目结构
 
-路径
 ```
 .
 ├─electron              Electron相关代码
