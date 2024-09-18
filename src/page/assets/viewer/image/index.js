@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useLocation} from "react-router";
 import {ImageViewerStyle} from "./style";
+import {inRectangularRange} from "../../../../util/ShapeUtil";
+import {percentage} from "../../../../util/SMath";
 
 // 一次缩放的倍率
 const UNIT_ZOOM = 0.5;
@@ -18,6 +20,8 @@ const ZOOM_FITTING_MAX = 10;
 let zoomMagnification = 1;
 // 图片元素的真实尺寸（显示的尺寸）
 const imgRefRealSize = {x: 0, y: 0};
+// 图片元素的偏移量（按光标缩放时产生的）
+const imgRefOffset = {left: 50, top: 50};
 
 const ImageViewer = () => {
     // 获取路由信息 - 获取传入的参数
@@ -86,19 +90,30 @@ const ImageViewer = () => {
             latestZoom = zoomMagnification * (1 - UNIT_ZOOM);
         }
 
-        console.log(latestZoom);
+        // 获取img组件信息
+        const imgRect = imgRef.current.getBoundingClientRect();
+
+        // 判断光标是否在图片上
+        const overImg = inRectangularRange(arrowPosition, {
+            left: imgRect.x,
+            top: imgRect.y,
+            width: imgRect.width,
+            height: imgRect.height
+        });
+
+        // 当光标在img里时
+        if (overImg) {
+            // 计算出当前位置的百分比
+            const pX = percentage(arrowPosition.x - imgRect.x, imgRect.width);
+            const pY = percentage(arrowPosition.y - imgRect.y, imgRect.height);
+
+            imgRefOffset.left = pX;
+            imgRefOffset.top = pY;
+        }
+
 
         // 更新缩放倍率
         setImgZoom(latestZoom)
-
-        console.log(imgRef.current.style.transform);
-
-        // 判断光标是否在图片上
-
-
-        // 更新
-        // imgRef.current.style.transform = `scale(${zoomMagnification}) translate(${zoomMagnification * 10}px, ${zoomMagnification * 10}px)`
-
     };
 
     // 查看器鼠标按下后的移动事件监听器
@@ -131,8 +146,6 @@ const ImageViewer = () => {
 
     // 设置图片是否平滑显示
     const setImgSmoothMode = (smooth) => {
-        console.log(smooth)
-
         // 如果未传值则用state中的值更新显示组件
         if (undefined === smooth) {
             smooth = smoothImg;
@@ -187,9 +200,8 @@ const ImageViewer = () => {
 
     // 更新图片缩放 num:缩放倍率 大于1则放大，小于1则缩小
     const updateImgZoom = () => {
-        console.log("[ImageViewer] img zoom:", zoomMagnification);
-
-        imgRef.current.style.transform = 'scale(' + zoomMagnification + ')';
+        imgRef.current.style.transform = `scale(${zoomMagnification})`;
+        imgRef.current.style.transformOrigin = `${imgRefOffset.left}% ${imgRefOffset.top}%`;
     }
 
     /**
@@ -252,8 +264,13 @@ const ImageViewer = () => {
         const imgLeft = (viewerWidth - imgSize.width) / 2;
         const imgTop = (viewerHeight - imgSize.height) / 2;
 
+        imgRefOffset.left = 50;
+        imgRefOffset.top = 50;
+
         // 重置到中心位置
         updateImgPosition(imgLeft, imgTop);
+        // 重置缩放
+        updateImgZoom()
     };
 
     // 阻止事件冒泡
