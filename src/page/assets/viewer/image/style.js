@@ -13,7 +13,7 @@ export const ImageViewerStyle = styled.div`
 
   & > img {
     position: absolute;
-    transition-property: width, height, transform;
+    transition-property: width, height, transform, transform-origin;
     transition-duration: 350ms;
   }
 
@@ -23,7 +23,7 @@ export const ImageViewerStyle = styled.div`
     left: 10px;
     top: 10px;
     z-index: 10;
-    
+
     flex-direction: column;
   }
 
