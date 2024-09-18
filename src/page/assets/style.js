@@ -44,7 +44,7 @@ export const AssetsStyle = styled.div`
       }
 
       li:hover {
-        background-color: whitesmoke;
+        color: orange;
       }
 
     }

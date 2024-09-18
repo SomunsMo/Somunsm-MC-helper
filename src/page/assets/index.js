@@ -172,8 +172,7 @@ const Assets = () => {
         let latestStyle = {...style};
 
         if (index === selectedIndex) {
-            latestStyle["color"] = 'white';
-            latestStyle["backgroundColor"] = 'darkorange';
+            latestStyle["color"] = 'darkorange';
         }
 
         return latestStyle;
